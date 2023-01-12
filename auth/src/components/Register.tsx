@@ -8,6 +8,7 @@ export default function Register() {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [password, setPassword] = useState('')
+  console.log(process.env.REACT_APP_AUTH0_ISSUER_BASE_URL)
   const paperstyle= {padding:20, height:'70vh', width:'50%', margin:"20px auto", display: "block", overflow: "auto" };
   var webAuth = new auth0.WebAuth({
     domain: process.env.REACT_APP_AUTH0_ISSUER_BASE_URL!,
