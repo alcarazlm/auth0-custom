@@ -10,7 +10,7 @@ export default function Login() {
   var webAuth = new auth0.WebAuth({
     domain: process.env.REACT_APP_AUTH0_ISSUER_BASE_URL!,
     clientID: process.env.REACT_APP_AUTH0_CLIENT_ID!,
-    redirectUri: 'http:localhost:3000/schedule',
+    redirectUri: process.env.REACT_APP_REDIRECT_URL,
     response_type: 'code token',
     audience: process.env.REACT_APP_AUTH0_AUDIENCE!,
   })  
