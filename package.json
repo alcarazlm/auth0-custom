@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@mui/material": "^5.11.4",
+    "auth0-js": "^9.20.0",
+    "react-router-dom": "^6.6.2"
+  },
+  "devDependencies": {
+    "@types/auth0-js": "^9.14.7"
+  }
+}
