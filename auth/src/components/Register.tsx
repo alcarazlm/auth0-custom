@@ -1,6 +1,7 @@
 import { Typography, Grid, Paper, Button, FilledInput } from "@mui/material";
 import { useState } from "react";
 import auth0 from 'auth0-js';
+import { redirect } from "react-router-dom";
 
 export default function Register() {
 
@@ -13,23 +14,25 @@ export default function Register() {
   var webAuth = new auth0.WebAuth({
     domain: process.env.REACT_APP_AUTH0_ISSUER_BASE_URL!,
     clientID: process.env.REACT_APP_AUTH0_CLIENT_ID!,
-    redirectUri: 'http:localhost:3000/schedule',
-    response_type: 'code token',
+    redirectUri: process.env.REACT_APP_REDIRECT_URL!,
+    // response_type: 'token',
+    // responseType: 'token',
     audience: process.env.REACT_APP_AUTH0_AUDIENCE!,
   })
 
   const handleSignUp = () => {
-    webAuth.signup({
-      connection: process.env.REACT_APP_CONNECTION!,
-      email: email,
-      password: password,
-      userMetadata: {
-        firstName: firstName,
-        lastName:lastName,
-      }
+    webAuth.redirect.signupAndLogin({
+        connection: process.env.REACT_APP_CONNECTION!,
+        email: email,
+        password: password,
+        userMetadata: {
+            firstName: firstName,
+            lastName:lastName,
+        }
     }, function (err) { 
-      if (err) return alert('Something went wrong: ' + err.errorDescription + err.code + err.description + err.error_description + err.statusCode + err.statusText); 
-        return alert('success signup without login!') 
+        if (err) return alert('Something went wrong: ' + err.errorDescription + err.code + err.description + err.error_description + err.statusCode + err.statusText); 
+        // return alert('success signup without login!') 
+        // redirect
     });
   }
 

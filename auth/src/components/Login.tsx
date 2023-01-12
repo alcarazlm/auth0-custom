@@ -11,7 +11,7 @@ export default function Login() {
     domain: process.env.REACT_APP_AUTH0_ISSUER_BASE_URL!,
     clientID: process.env.REACT_APP_AUTH0_CLIENT_ID!,
     redirectUri: process.env.REACT_APP_REDIRECT_URL,
-    response_type: 'token',
+    responseType: 'token',
     audience: process.env.REACT_APP_AUTH0_AUDIENCE!,
   })  
 
@@ -21,8 +21,8 @@ export default function Login() {
       email: email,
       password: password,
     }, function (err) { 
-      if (err) return alert('Something went wrong: ' + err.errorDescription + err.code + err.description + err.error_description + err.statusCode + err.statusText); 
-        return alert('success signup without login!') 
+        if (err) return alert('Something went wrong: ' + err.errorDescription + err.code + err.description + err.error_description + err.statusCode + err.statusText); 
+        // return alert('success signup without login!') 
     });
   }
 
