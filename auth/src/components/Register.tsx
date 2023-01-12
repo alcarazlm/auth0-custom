@@ -9,28 +9,28 @@ export default function Register() {
   const [lastName, setLastName] = useState('')
   const [password, setPassword] = useState('')
   const paperstyle= {padding:20, height:'70vh', width:'50%', margin:"20px auto", display: "block", overflow: "auto" };
-//   var webAuth = new auth0.WebAuth({
-//     domain: process.env.REACT_APP_AUTH0_ISSUER_BASE_URL!,
-//     clientID: process.env.REACT_APP_AUTH0_CLIENT_ID!,
-//     redirectUri: 'http:localhost:3000/schedule',
-//     response_type: 'code token',
-//     audience: process.env.REACT_APP_AUTH0_AUDIENCE!,
-//   })
+  var webAuth = new auth0.WebAuth({
+    domain: process.env.REACT_APP_AUTH0_ISSUER_BASE_URL!,
+    clientID: process.env.REACT_APP_AUTH0_CLIENT_ID!,
+    redirectUri: 'http:localhost:3000/schedule',
+    response_type: 'code token',
+    audience: process.env.REACT_APP_AUTH0_AUDIENCE!,
+  })
 
-//   const handleSignUp = () => {
-//     webAuth.signup({
-//       connection: process.env.REACT_APP_CONNECTION!,
-//       email: email,
-//       password: password,
-//       userMetadata: {
-//         firstName: firstName,
-//         lastName:lastName,
-//       }
-//     }, function (err) { 
-//       if (err) return alert('Something went wrong: ' + err.errorDescription + err.code + err.description + err.error_description + err.statusCode + err.statusText); 
-//         return alert('success signup without login!') 
-//     });
-//   }
+  const handleSignUp = () => {
+    webAuth.signup({
+      connection: process.env.REACT_APP_CONNECTION!,
+      email: email,
+      password: password,
+      userMetadata: {
+        firstName: firstName,
+        lastName:lastName,
+      }
+    }, function (err) { 
+      if (err) return alert('Something went wrong: ' + err.errorDescription + err.code + err.description + err.error_description + err.statusCode + err.statusText); 
+        return alert('success signup without login!') 
+    });
+  }
 
   return (
     <Grid container>
@@ -50,7 +50,7 @@ export default function Register() {
                       fullWidth required/>
           <FilledInput name='Last Name' placeholder='Enter Your Last Name' value={lastName} onChange={(event)=>setLastName(event.target.value)}
                       fullWidth required/>
-        {/* <Button fullWidth disabled={!email || !password || !firstName || !lastName} onClick={() => handleSignUp()}>Register Me</Button> */}
+        <Button fullWidth disabled={!email || !password || !firstName || !lastName} onClick={() => handleSignUp()}>Register Me</Button>
       </Paper>
     </Grid>
   );
