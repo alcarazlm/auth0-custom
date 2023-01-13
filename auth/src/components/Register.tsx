@@ -17,7 +17,7 @@ export default function Register() {
     clientID: process.env.REACT_APP_AUTH0_CLIENT_ID!,
     redirectUri: process.env.REACT_APP_REDIRECT_URL!,
     // response_type: 'token',
-    responseType: 'token id_token',
+    responseType: 'code',
     audience: process.env.REACT_APP_AUTH0_AUDIENCE!,
   })
 

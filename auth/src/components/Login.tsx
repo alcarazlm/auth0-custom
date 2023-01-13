@@ -12,7 +12,7 @@ export default function Login() {
     domain: process.env.REACT_APP_AUTH0_ISSUER_BASE_URL!,
     clientID: process.env.REACT_APP_AUTH0_CLIENT_ID!,
     redirectUri: process.env.REACT_APP_REDIRECT_URL,
-    responseType: 'token id_token',
+    responseType: 'code',
     audience: process.env.REACT_APP_AUTH0_AUDIENCE!,
   })  
 
