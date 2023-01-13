@@ -9,6 +9,7 @@ export default function Register() {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [password, setPassword] = useState('')
+  const [signUpError, setError] = useState('')
 //   console.log(process.env.REACT_APP_AUTH0_ISSUER_BASE_URL)
   const paperstyle= {padding:20, height:'70vh', width:'50%', margin:"20px auto", display: "block", overflow: "auto" };
   var webAuth = new auth0.WebAuth({
@@ -30,7 +31,7 @@ export default function Register() {
             lastName:lastName,
         }
     }, function (err) { 
-        if (err) return alert('Something went wrong: ' + err.errorDescription + err.code + err.description + err.error_description + err.statusCode + err.statusText); 
+        if (err) setError(err.errorDescription!); 
         // return alert('success signup without login!') 
         // redirect
     });
@@ -54,6 +55,7 @@ export default function Register() {
                       fullWidth required/>
           <FilledInput name='Last Name' placeholder='Enter Your Last Name' value={lastName} onChange={(event)=>setLastName(event.target.value)}
                       fullWidth required/>
+        {signUpError? <Typography>{signUpError}</Typography> : <div/>}
         <Button fullWidth disabled={!email || !password || !firstName || !lastName} onClick={() => handleSignUp()}>Register Me</Button>
       </Paper>
     </Grid>

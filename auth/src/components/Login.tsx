@@ -1,11 +1,12 @@
 
-import { Button, Paper, Grid, FilledInput } from "@mui/material";
+import { Typography, Button, Paper, Grid, FilledInput } from "@mui/material";
 import { useState } from "react";
 import auth0 from 'auth0-js';
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loginError, setError] = useState("");
 
   var webAuth = new auth0.WebAuth({
     domain: process.env.REACT_APP_AUTH0_ISSUER_BASE_URL!,
@@ -21,7 +22,7 @@ export default function Login() {
       email: email,
       password: password,
     }, function (err) { 
-        if (err) return alert('Something went wrong: ' + err.errorDescription + err.code + err.description + err.error_description + err.statusCode + err.statusText); 
+        if (err) setError(err.errorDescription!); 
         // return alert('success signup without login!') 
     });
   }
@@ -38,6 +39,7 @@ export default function Login() {
         <FilledInput name='Password' placeholder='Enter Password'  type='password' value={password} onChange={(event)=>setPassword(event.target.value)}
                     fullWidth required/>
         {/* <Typography>{}</Typography> */}
+        {loginError? <Typography>{loginError}</Typography> : <div/>}
         <Button fullWidth disabled={!email || !password } onClick={() => handleLogin()}>Log In</Button>
       </Paper>
     </Grid>
