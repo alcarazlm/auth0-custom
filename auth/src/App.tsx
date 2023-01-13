@@ -25,7 +25,7 @@ function App() {
         </a>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/schedule" element={<Secure />} />
+          <Route path="/secure" element={<Secure />} />
           <Route path="/login" element={<Login />} />
           <Route path='/signup' element={<Register />} />
         </Routes>
